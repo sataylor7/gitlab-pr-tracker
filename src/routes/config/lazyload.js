@@ -5,11 +5,11 @@
  */
 const routes = [
   {
-    name: "Homepage",
+    name: "Dashboard",
     moduleName: {
-      loader: () => import(/* webpackChunkName: "homepage" */ "../homepage"),
+      loader: () => import(/* webpackChunkName: "dashboard" */ "../dashboard"),
       loading: () => null,
-      modules: ["homepage"]
+      modules: ["dashboard"]
     },
     lazy: true,
     path: true,

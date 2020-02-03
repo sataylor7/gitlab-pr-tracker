@@ -1,22 +1,10 @@
 import axios from "axios";
 import _get from "lodash/get";
 
-import envConfigDefault from "./config/env-config.json";
-import proxiesDefault from "./config/proxies";
-
 const defaultHost = process.env.APP_PORT || 3000;
 /* eslint-disable */
-function APIResource({
-  headers = {},
-  envConfig = envConfigDefault,
-  proxies = proxiesDefault,
-  facade = "ecards",
-  hmk_env = "dev"
-}) {
+function APIResource({ headers = {}, hmk_env = "dev" }) {
   this.HEADERS = headers;
-  this.ENV_CONFIG = envConfig;
-  this.PROXIES = proxies;
-  this.FACADE = facade;
   this.HMK_ENV = hmk_env;
 
   /**
@@ -31,24 +19,6 @@ function APIResource({
   const setHMKEnv = environment => {
     this.HMK_ENV = environment;
     return true;
-  };
-
-  /**
-   * @description Construct a URL to help with proxy routing
-   * @param {object} req - the request object from the express server
-   * @param {string} endpoint - the endpoint to hit
-   */
-  const buildURL = (req, endpoint) => {
-    const proxieApiEnv = _get(this.ENV_CONFIG, [this.HMK_ENV, "api"], "local");
-    const proxieApiFacade = this.PROXIES[this.FACADE];
-    const hostname =
-      proxieApiFacade[proxieApiEnv].api || `localhost:${defaultHost}`;
-    const protocol =
-      req.protocol.indexOf(":") === -1
-        ? req.protocol
-        : req.protocol.substring(0, req.protocol.length - 1);
-    const host = `${protocol}://${hostname}`;
-    return `${host}${endpoint}`;
   };
 
   /**
@@ -141,8 +111,6 @@ function APIResource({
 
   return {
     getHeaders,
-    buildURL,
-    setHMKEnv,
     post,
     fetch,
     put,

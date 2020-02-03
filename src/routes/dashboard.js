@@ -21,7 +21,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import BarChartIcon from "@material-ui/icons/BarChart";
-import GitlabContainer from "./../App/gitlab/gitlab.container";
+import GitlabContainer from "../App/gitlab/gitlab.container";
 import SearchIcon from "@material-ui/icons/Search";
 
 const Copyright = () => {

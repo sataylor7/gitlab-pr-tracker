@@ -45,7 +45,7 @@ const PRList = ({ list }) => {
     <div className={classes.root}>
       <List component="nav" aria-label="main">
         {list.map(item => (
-          <PRTemplate {...item} />
+          <PRTemplate {...item} key={item.title} />
         ))}
       </List>
     </div>

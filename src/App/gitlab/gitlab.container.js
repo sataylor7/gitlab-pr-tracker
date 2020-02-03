@@ -7,7 +7,7 @@ import { objectSort } from "./../../utils/objectSort";
 import APIResource from "./../../resource/api.resource";
 import { getUrlParameter } from "./../../utils/url";
 
-const resource = new APIResource();
+const resource = new APIResource({});
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,9 +39,9 @@ const initialData = [
 ];
 
 const callResource = ({ url, version, type, perPage, privateToken }) => {
-  return resource.fetch(
-    `${url}/${version}/${type}?per_page=${perPage}&private_token=${privateToken}`
-  );
+  return resource.fetch({
+    url: `${url}/${version}/${type}?per_page=${perPage}&private_token=${privateToken}`
+  });
 };
 
 const GitlabContainer = () => {
@@ -64,6 +64,7 @@ const GitlabContainer = () => {
       perPage: 50,
       privateToken: token
     }).then(mrData => {
+      console.log("MR data", mrData);
       callResource({
         url: process.env.REACT_APP_GITLAB_URL,
         version: process.env.REACT_APP_GITLAB_API_VERSION,
@@ -71,6 +72,7 @@ const GitlabContainer = () => {
         perPage: 1000,
         privateToken: token
       }).then(prData => {
+        console.log("PR data", prData);
         let projectMap = new Map();
         prData.forEach(pr => {
           projectMap.set(pr.id, pr.name_with_namespace);
