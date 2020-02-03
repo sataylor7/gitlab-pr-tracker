@@ -1,0 +1,17 @@
+{
+  "stage": {
+    "host": "stage"
+  },
+  "prod": {
+    "host": "prod"
+  },
+  "dev": {
+    "host": "dev"
+  },
+  "qa": {
+    "host": "qa"
+  },
+  "uat": {
+    "host": "uat"
+  }
+}
