@@ -28,9 +28,9 @@ export const PRTemplate = ({
         primary={title}
         secondary={
           <>
-            <span>Author:{author}</span>
+            <span>Author: {author}</span>
             <br />
-            <span>Project:{project}</span>
+            <span>Project: {project}</span>
           </>
         }
       />

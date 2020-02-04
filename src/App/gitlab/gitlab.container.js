@@ -17,30 +17,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const initialData = [
-  {
-    project: "fluffy unicorns",
-    author: "fluffy",
-    title: "unicorns rule",
-    url: "#"
-  },
-  {
-    project: "joker",
-    author: "fluffy",
-    title: "joker rule",
-    url: "#"
-  },
-  {
-    project: "harley",
-    author: "shaffer",
-    title: "joker sucks",
-    url: "#"
-  }
-];
+const initialData = [];
 
 const callResource = ({ url, version, type, perPage, privateToken }) => {
+  const base = `${url}/${version}/${type}?per_page=${perPage}&private_token=${privateToken}`;
+  const fullUrl =
+    type === "merge_requests" ? `${base}&state=opened&scope=all` : base;
   return resource.fetch({
-    url: `${url}/${version}/${type}?per_page=${perPage}&private_token=${privateToken}`
+    url: fullUrl
   });
 };
 
